@@ -1,2 +1,7 @@
+Fortran Kriging Library (ForK):
+
+Library for creating Kriging surfaces based on Function and Gradient values
+and incorporating these models into existing FORTRAN codes.
+
 Please look at "doc/html/index.html" to get started. It should have everything
 you need to know to get started.
