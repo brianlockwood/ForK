@@ -8,31 +8,16 @@
 !this program. If not, see <http://www.gnu.org/licenses/>.
 
 !> \file funcmod.f90
-!> \brief This module contains the function calls that can be used in conjunction with the optimization algorithms <a href=patternsearch_8f90.html>patternsearch</a> and <a href=simplexsearch_8f90.html>simplexsearch</a>. The call to the subroutine "func" is made by the subroutine <a href=funcwrapper_8f90.html>funcwrapper</a>. The subroutine is overloaded based on the type of the \a arg argument. For each \a arg type, a different function is called (either toy, likelihood, likelihood_mle, or kriging). This module in addition to <a href=argument_8f90.html>argument</a> and <a href=funcwrapper_8f90.html>funcwrapper</a> must be modified if optimization is to be performed on different objectives.
+!> \brief This module contains the function calls that can be used in conjunction with the optimization algorithms <a href=patternsearch_8f90.html>patternsearch</a> and <a href=simplexsearch_8f90.html>simplexsearch</a>. The call to the subroutine "func" is made by the subroutine <a href=funcwrapper_8f90.html>funcwrapper</a>. The subroutine is overloaded based on the type of the \a arg argument. For each \a arg type, a different function is called (likelihood, likelihood_mle, or kriging). This module in addition to <a href=argument_8f90.html>argument</a> and <a href=funcwrapper_8f90.html>funcwrapper</a> must be modified if optimization is to be performed on different objectives.
 
 module funcmod
   use argument
   implicit none
 
   interface func
-     module procedure func_toy, func_likelihood_grad,func_likelihood_all_grad,func_likelihood,func_likelihood_all, func_kriging, func_kriging_grad
+     module procedure func_likelihood_grad,func_likelihood_all_grad,func_likelihood,func_likelihood_all, func_kriging, func_kriging_grad
   end interface func
 contains
-  subroutine func_toy(n,X,f,arg)
-    integer, intent(in) :: n
-    real(8), intent(in) :: X(n)
-    real(8), intent(out) :: f
-    
-    type (arg_toy), intent(in) :: arg
-
-    real(8) alpha,dYt(n)
-    
-    alpha=arg%alpha
-
-    call toyfunc(n,X,f,dyt)
-
-    return 
-  end subroutine func_toy
   subroutine func_likelihood(n,X,f,arg)
     use likelihood_mle_mod
     integer, intent(in) :: n

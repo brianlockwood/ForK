@@ -24,9 +24,7 @@ subroutine funcwrapper(n,X,f,args)
 
   descriptor = args%descriptor
 
-  if (descriptor=='Toyfunc') then
-     call func(n,X,f,args%toyarg)
-  elseif (descriptor=='Likelihood') then
+  if (descriptor=='Likelihood') then
      call func(n,X,f,args%likearg)
   elseif (descriptor=='Likelihood Grad') then
      call func(n,X,f,args%gradlikearg)
