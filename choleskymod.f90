@@ -316,7 +316,7 @@ subroutine symmatrixmulttrans(n,A,p,B,C)
 
   do i=1,n
      do j=1,p
-        C(i,j)=0.D0
+        C(j,i)=0.D0
         do k=1,i
            C(j,i)=C(j,i)+A(i,k)*B(j,k)
         end do
